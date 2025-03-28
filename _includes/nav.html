@@ -6,7 +6,7 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                {% for item in site.data.pages.pages %}
+                {% for item in site.data.pages %}
 
                 {% assign item_length = item.url | size %}
                 {% assign url_start = page.url | slice: 0, item_length %}
