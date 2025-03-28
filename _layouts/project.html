@@ -11,21 +11,43 @@ title: Projects
 {% endfor %}
 {% assign all_types = all_types | split: ", " | uniq | sort %}
 
-<div class="dropdown overflow-visible mb-5">
-    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-        Select type
-    </button>
-    <ul class="dropdown-menu overflow-visible">
-        {% assign types = site.projects %}
-        <li><a href="/projects" class="dropdown-item">All</a></li>
-        {% for type in all_types %}
-        <li><a href="/projects/{{ type }}" class="dropdown-item">{{ type | capitalize }}</a></li>
-        {% endfor %}
-    </ul>
+{% assign supervisors = "" %}
+{% for project in site.data.projects %}
+    {% for supervisor in project.supervisors %}
+        {% assign supervisors = supervisors | append: supervisor | append: "," %}
+    {% endfor %}
+{% endfor %}
+{% assign supervisors = supervisors | split: "," %}
+
+<div class="d-flex flex-row gap-3 mb-3">
+    <div class="dropdown overflow-visible">
+        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Select type
+        </button>
+        <ul class="dropdown-menu overflow-visible">
+            {% assign types = site.projects %}
+            <li><a href="/projects" class="dropdown-item">All</a></li>
+            {% for type in all_types %}
+            <li><a href="/projects/{{ type }}" class="dropdown-item">{{ type | capitalize }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+    
+    <div class="dropdown overflow-visible">
+        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Select supervisor
+        </button>
+        <ul class="dropdown-menu overflow-visible">
+            <li><a href="/projects" class="dropdown-item">All</a></li>
+            {% for supervisor in supervisors %}
+            <li><a href="/projects/{{ supervisor | downcase | replace: ' ', '_' }}" class="dropdown-item">{{ supervisor | capitalize }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
 </div>
 
 {% assign all_projects = site.data.projects %}
-{% if page.type && page.type != "" %}
+{% if page.type and page.type != "" %}
 {% assign page_projects = all_projects | where: "type", page.type %}
 {% endif %}
 
