@@ -15,7 +15,7 @@ title: Publications
             {% assign sorted_filters = site.filters | sort: "filter_author" %}
             {% for filter in sorted_filters %}
                 {% if filter.filter_author and filter.filter_author != "" %}
-                    <li><a href="{{ filter.filter_author | downcase | split: ' ' | join: '-' }} " class="dropdown-item">{{ filter.filter_author }}</a></li>
+                    <li><a href="/publications/{{ filter.filter_author | downcase | split: ' ' | join: '-' }} " class="dropdown-item">{{ filter.filter_author }}</a></li>
                 {% endif %}
             {% endfor %}
         </ul>
@@ -30,7 +30,7 @@ title: Publications
             {% assign sorted_filters = site.filters | sort: "filter_author" %}
             {% for filter in sorted_filters %}
                 {% if filter.filter_year and filter.filter_year != "" %}
-                    <li><a href="{{ filter.filter_year }}" class="dropdown-item">{{ filter.filter_year }}</a></li>
+                    <li><a href="/publications/{{ filter.filter_year }}" class="dropdown-item">{{ filter.filter_year }}</a></li>
                 {% endif %}
             {% endfor %}
         </ul>
@@ -45,7 +45,7 @@ title: Publications
             {% assign sorted_filters = site.filters | sort: "filter_author" %}
             {% for filter in sorted_filters %}
                 {% if filter.filter_category and filter.filter_category != "" %}
-                    <li><a href="{{ filter.filter_category }}" class="dropdown-item">{{ filter.filter_category | capitalize }}</a></li>
+                    <li><a href="/publications/{{ filter.filter_category }}" class="dropdown-item">{{ filter.filter_category | capitalize }}</a></li>
                 {% endif %}
             {% endfor %}
         </ul>
