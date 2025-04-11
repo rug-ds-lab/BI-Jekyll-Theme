@@ -35,7 +35,7 @@ title: Projects
         <ul class="dropdown-menu overflow-visible">
             <li><a href="/projects" class="dropdown-item">All</a></li>
             {% for supervisor in supervisors %}
-            <li><a href="/projects/supervisors/{{ supervisor.title | downcase | replace: ' ', '_' }}" class="dropdown-item">{{ supervisor.title | capitalize }}</a></li>
+            <li><a href="/projects/supervisors/{{ supervisor.title | downcase | replace: ' ', '-' }}" class="dropdown-item">{{ supervisor.title | capitalize }}</a></li>
             {% endfor %}
         </ul>
     </div>
