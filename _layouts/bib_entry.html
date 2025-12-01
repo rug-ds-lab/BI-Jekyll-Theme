@@ -9,7 +9,7 @@
     {% assign ref = ref | replace: entry.doi, doi %}
 {% endif %}
 
-{% if entry.url and entry.url != "" %}
+{% if entry.url and entry.url != "" and (entry.doi == nil or not (entry.url contains 'https://doi.org/')) %}
     {% assign url = '<a target="_blank" href="' | append: entry.url | append: '">' | append: entry.url | append: '</a>' %}
     {% assign ref = ref | replace: entry.url, url %}
 {% endif %}
