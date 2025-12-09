@@ -38,10 +38,11 @@ layout: headers
           </div>
           <h2>Recent publications</h2>
           {% assign last_name = page.name | split: " " | last %}
-          {% bibliography --max 5 -q @*[author ^= {{ last_name }}] %}
+          {% bibliography --max 5 -r year, title -q @*[author ^= {{ last_name }}] %}
         </div>
         {{ content }}
       </div>
     </div>
   </div>
+
 </main>
