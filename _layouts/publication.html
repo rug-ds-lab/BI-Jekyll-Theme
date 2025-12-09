@@ -58,16 +58,16 @@ title: Publications
 
 {% if page.filter_year and page.filter_year != "" %}
     <hr>
-    {% bibliography -q @*[year = {{ page.filter_year }} ] -r %}
+    {% bibliography -q @*[year = {{ page.filter_year }} ] --remove_duplicates year, title %}
 {% elsif page.filter_category and page.filter_category != "" %}
     {% for year in years %}
-        {% capture year_count_str %}{% bibliography_count -q @{{page.filter_category}}[year = {{ year }}] -r %}{% endcapture %}
+        {% capture year_count_str %}{% bibliography_count -q @{{page.filter_category}}[year = {{ year }}] --remove_duplicates year, title %}{% endcapture %}
         {% assign year_count = year_count_str | to_integer %}
         {% if year_count > 0 %}
             <div>
                 <h1>{{ year }}</h1>
                 <hr>
-                {% bibliography -q @{{page.filter_category}}[year = {{ year }}] -r %}
+                {% bibliography -q @{{page.filter_category}}[year = {{ year }}] --remove_duplicates year, title %}
             </div>
         {% endif %}
     {% endfor %}
@@ -76,19 +76,19 @@ title: Publications
     {% assign filter_author_last = filter_author_parts | last %}
 
     {% for year in years %}
-        {% capture year_count_str %}{% bibliography_count -q @*[year = {{year}} && author ^= {{ filter_author_last }}] -r %}{% endcapture %}
+        {% capture year_count_str %}{% bibliography_count -q @*[year = {{year}} && author ^= {{ filter_author_last }}] --remove_duplicates year, title %}{% endcapture %}
         {% assign year_count = year_count_str | to_integer %}
         {% if year_count > 0 %}
             <div>
                 <h1>{{ year }}</h1>
                 <hr>
-                {% bibliography -q @*[year = {{ year }} && author ^= {{ filter_author_last }}] -r %}
+                {% bibliography -q @*[year = {{ year }} && author ^= {{ filter_author_last }}] --remove_duplicates year, title %}
             </div>
         {% endif %}
     {% endfor %}
 {% else %}
     {% for year in years %}
-        {% capture year_count_str %}{% bibliography_count -q @*[year = {{year}} && {{ page.filter }}] -r %}{% endcapture %}
+        {% capture year_count_str %}{% bibliography_count -q @*[year = {{year}} && {{ page.filter }}] --remove_duplicates year, title %}{% endcapture %}
         {% assign year_count = year_count_str | to_integer %}
 
         {% if year_count > 0 %}
@@ -96,10 +96,11 @@ title: Publications
                 <h1>{{ year }}</h1>
                 <hr>
 
-                {% bibliography -q @*[year = {{year}}] -r %}
+                {% bibliography -q @*[year = {{year}}] --remove_duplicates year, title %}
             </div>
         {% endif %}
 
     {% endfor %}
 
 {% endif %}
+
