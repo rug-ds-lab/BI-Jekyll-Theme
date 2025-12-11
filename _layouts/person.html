@@ -36,9 +36,14 @@ layout: headers
                 alt="{{ page.name }}"> {% endif %}
             </div>
           </div>
-          <h2>Recent publications</h2>
           {% assign last_name = page.name | split: " " | last %}
+          {% if page.level == 'alumni' %}
+          <h2>Publications</h2>
+          {% bibliography -r year, title -q @*[author ^= {{ last_name }}] %}
+          {% else %}
+          <h2>Recent publications</h2>
           {% bibliography --max 5 -r year, title -q @*[author ^= {{ last_name }}] %}
+          {% endif %}
         </div>
         {{ content }}
       </div>
@@ -46,3 +51,4 @@ layout: headers
   </div>
 
 </main>
+
