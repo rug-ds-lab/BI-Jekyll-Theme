@@ -10,7 +10,7 @@ layout: headers
   </div>
   <div class="container">
     <div class="row">
-      <div class="col-3">
+      <div class="col-3 d-none d-md-block">
         {% include sidebar.html %}
       </div>
       <div class="col-9">
@@ -31,8 +31,8 @@ layout: headers
                 {% for research in page.research %} <li class="list-group-item">{{ research }}</li> {% endfor %}
               </ul>
             </div>
-            <div class="col-6 position-relative">
-              {% if page.picture %} <img class="rounded position-absolute top-0 end-0" src="{{ page.picture }}"
+            <div class="col-6 d-none d-md-block">
+              {% if page.picture %} <img class="rounded float-end" style="max-width: 250px;" src="{{ page.picture }}"
                 alt="{{ page.name }}"> {% endif %}
             </div>
           </div>
@@ -51,4 +51,5 @@ layout: headers
   </div>
 
 </main>
+
 
