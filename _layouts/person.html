@@ -36,13 +36,13 @@ layout: headers
                 alt="{{ page.name }}"> {% endif %}
             </div>
           </div>
-          {% assign last_name = page.name | split: " " | last %}
+          {% assign bib_author = page.bib_names | join: "|" | prepend: "(" | append: ")"%}
           {% if page.level == 'alumni' %}
           <h2>Publications</h2>
-          {% bibliography -r year, title -q @*[author ^= {{ last_name }}] %}
+          {% bibliography -r year, title -q @*[author ~= {{ bib_author }}] %}
           {% else %}
           <h2>Recent publications</h2>
-          {% bibliography --max 5 -r year, title -q @*[author ^= {{ last_name }}] %}
+          {% bibliography --max 5 -r year, title -q @*[author ~= ({{ bib_author }})] %}
           {% endif %}
         </div>
         {{ content }}
