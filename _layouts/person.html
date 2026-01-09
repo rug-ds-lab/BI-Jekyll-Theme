@@ -37,7 +37,7 @@ layout: headers
             </div>
           </div>
           <h2>Publications</h2>
-          {% bibliography -r year, title -q @*[author ^= {{ page.bib_names }}] %}
+          {% bibliography -r year, title -q @*[author ~= {{ page.bib_names }}] %}
         </div>
         {{ content }}
       </div>
