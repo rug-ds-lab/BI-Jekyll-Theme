@@ -73,13 +73,13 @@ title: Publications
     {% endfor %}
 {% elsif page.filter_author and page.filter_author != "" %}
     {% for year in years %}
-        {% capture year_count_str %}{% bibliography_count -q @*[year = {{year}} && author ^= {{ page.bib_names }}] --remove_duplicates year, title %}{% endcapture %}
+        {% capture year_count_str %}{% bibliography_count -q @*[year = {{year}} && author ~= {{ page.bib_names }}] --remove_duplicates year, title %}{% endcapture %}
         {% assign year_count = year_count_str | to_integer %}
         {% if year_count > 0 %}
             <div>
                 <h1>{{ year }}</h1>
                 <hr>
-                {% bibliography -q @*[year = {{ year }} && author ^= {{ page.bib_names }}] --remove_duplicates year, title %}
+                {% bibliography -q @*[year = {{ year }} && author ~= {{ page.bib_names }}] --remove_duplicates year, title %}
             </div>
         {% endif %}
     {% endfor %}
